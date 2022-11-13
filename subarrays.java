@@ -1,12 +1,5 @@
-/******************************************************************************
-
-                            Online Java Compiler.
-                Code, Compile, Run and Debug java program online.
-Write your code in this editor and press "Run" button to execute it.
-
-*******************************************************************************/
-
-import java.util.*;
+//o(n^3)
+/*import java.util.*;
 public class Main{
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3 };
@@ -27,5 +20,30 @@ public class Main{
         }
 
         result.forEach(System.out::println);
+    }
+}*/
+
+//o(n^2)
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] a=new int[n];
+        for(int i=0;i<n;i++){
+            a[i]=sc.nextInt();
+        }
+        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
+        ArrayList<Integer> l;
+        for(int i=0;i<n;i++){
+            l=new ArrayList<>();
+            for(int j=i;j<n;j++){
+                l.add(a[j]);
+                list.add(new ArrayList<>(l));
+            }
+        }
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i));
+        }
     }
 }
