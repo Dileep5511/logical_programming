@@ -1,44 +1,46 @@
 
 import java.util.*;
-public class subsequences
+public class Main
 {
-    public static List<List<Integer>> combinations(int[] arr) {
-        List<List<Integer>> c = new ArrayList<List<Integer>>();
-        List<Integer> l;
-        for (int i = 0; i < arr.length; i++) {
-            int k = c.size();
-            System.out.println("c size is k:"+k);
-            for (int j = 0; j < k; j++) {
-                l = new ArrayList<Integer>(c.get(j));
-                System.out.println("j arraylist created for l");
-                l.add(new Integer(arr[i]));
-                System.out.println(arr[i]+" added to l");
-                c.add(l);
-                System.out.println("l added to c");
+    public static ArrayList<ArrayList<Integer>> func(int n,int[] a){
+        ArrayList<ArrayList<Integer>> arr=new ArrayList<>();
+        ArrayList<Integer> l;
+        for(int i=0;i<n;i++){
+            int k=arr.size();
+            for(int j=0;j<k;j++){
+                l=new ArrayList<Integer>(arr.get(j));
+                l.add(a[i]);
+                arr.add(l);
             }
-            l = new ArrayList<Integer>();
-            l.add(new Integer(arr[i]));
-            System.out.println(arr[i]+" added to l");
-            c.add(l);
-            System.out.println("l added to c");
+            l=new ArrayList<Integer>();
+            l.add(a[i]);
+            arr.add(l);
         }
-        return c;
+        return arr;
     }
-	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
-		int n=sc.nextInt();
-		int[] arr=new int[n];
-		for(int i=0;i<n;i++){
-		    arr[i]=sc.nextInt();
-		}
-		List<List<Integer>> list=new ArrayList<List<Integer>>();
-		list=combinations(arr);
-		for(int i=0;i<list.size();i++){
-		    for(int j=0;j<list.get(i).size();j++){
-		        System.out.print(list.get(i).get(j)+" ");
-		    }
-		    System.out.println();
-		}
-		System.out.println(list.size());
+    public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int n=sc.nextInt();
+	int[] a=new int[n];
+	for(int i=0;i<n;i++){
+	     a[i]=sc.nextInt();
 	}
+	ArrayList<ArrayList<Integer>> list=new ArrayList<>();
+	list=func(n,a);
+	/* sorting based on size()
+	Collections.sort(list, new Comparator<ArrayList<Integer>>() {    
+              public int compare(ArrayList<Integer> o1, ArrayList<Integer> o2) {
+                   return Integer.compare(o1.size(),o2.size());
+              }               
+         });*/
+	    /* sorting based on first element
+	Collections.sort(list, new Comparator<ArrayList<Integer>>() {    
+              public int compare(ArrayList<Integer> o1, ArrayList<Integer> o2) {
+                   return o1.get(0).compareTo(o2.get(0));
+              }               
+         });*/
+	for(int i=0;i<list.size();i++){
+	      System.out.println(list.get(i));
+	}
+   }
 }
